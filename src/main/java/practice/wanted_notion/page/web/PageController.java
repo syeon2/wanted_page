@@ -17,9 +17,9 @@ public class PageController {
 
 	private final PageService pageService;
 
-	@PostMapping("/api/v1/page")
-	public Long createPage(@RequestBody CreatePageRequest createPageRequest) {
-		return pageService.createPage(createPageRequest.toServiceRequest());
+	@PostMapping("/api/v1/page/{curPageId}")
+	public Long createPage(@RequestBody CreatePageRequest createPageRequest, @PathVariable Long curPageId) {
+		return pageService.createPage(createPageRequest.toServiceRequest(curPageId));
 	}
 
 	@GetMapping("/api/v1/page/{id}")

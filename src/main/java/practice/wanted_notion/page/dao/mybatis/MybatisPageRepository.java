@@ -1,5 +1,6 @@
 package practice.wanted_notion.page.dao.mybatis;
 
+import java.util.List;
 import java.util.NoSuchElementException;
 
 import org.springframework.stereotype.Repository;
@@ -25,5 +26,10 @@ public class MybatisPageRepository implements PageRepository {
 	public Page findById(Long id) {
 		return pageMapper.findById(id)
 			.orElseThrow(() -> new NoSuchElementException("해당 페이지는 존재하지 않습니다."));
+	}
+
+	@Override
+	public List<Page> findByPrevId(Long prevId) {
+		return pageMapper.findByPrevId(prevId);
 	}
 }

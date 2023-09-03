@@ -1,5 +1,7 @@
 package practice.wanted_notion.page.service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
@@ -22,7 +24,8 @@ public class PageService {
 
 	public PageResponse getPage(Long id) {
 		Page findPage = pageRepository.findById(id);
+		List<Page> subPages = pageRepository.findByPrevId(id);
 
-		return PageResponse.of(findPage);
+		return PageResponse.of(findPage, subPages);
 	}
 }

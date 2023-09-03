@@ -4,13 +4,19 @@
 <mapper namespace="practice.wanted_notion.page.dao.mybatis.PageMapper">
 
     <insert id="save" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
-        insert into page (name, content, breadcrumb)
-        values (#{name}, #{content}, #{breadcrumb})
+        insert into page (name, content, breadcrumb, prev_page_id)
+        values (#{name}, #{content}, #{breadcrumb}, #{prevPageId})
     </insert>
 
     <select id="findById">
-        select *
+        select id, name, content, prev_page_id, breadcrumb
         from page
         where id = #{id}
+    </select>
+
+    <select id="findByPrevId">
+        select id, name, content, prev_page_id, breadcrumb
+        from page
+        where prev_page_id = #{prevId}
     </select>
 </mapper>

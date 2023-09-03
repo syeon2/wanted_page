@@ -20,11 +20,12 @@ public class CreatePageRequest {
 		this.breadcrumbs = breadcrumbs;
 	}
 
-	public CreatePageServiceDto toServiceRequest() {
+	public CreatePageServiceDto toServiceRequest(Long id) {
 		return CreatePageServiceDto.builder()
 			.name(this.name)
 			.content(this.content)
 			.breadcrumb(this.breadcrumbs)
+			.prevPageId(id)
 			.build();
 	}
 }

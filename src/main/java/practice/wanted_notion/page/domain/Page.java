@@ -1,7 +1,6 @@
 package practice.wanted_notion.page.domain;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import lombok.Builder;
 import lombok.Getter;
@@ -14,19 +13,23 @@ public class Page {
 	private final String name;
 	private final String content;
 	private final String breadcrumb;
+	private final Long prevPageId;
 
 	@Builder
-	private Page(String name, String content, String breadcrumb) {
+	private Page(String name, String content, String breadcrumb, Long prevPageId) {
 		this.name = name;
 		this.content = content;
 		this.breadcrumb = breadcrumb;
+		this.prevPageId = prevPageId;
 	}
+
 
 	public static Page toDomain(CreatePageServiceDto createPageServiceDto) {
 		return Page.builder()
 			.name(createPageServiceDto.getName())
 			.content(createPageServiceDto.getContent())
 			.breadcrumb(createBreadcrumb(createPageServiceDto))
+			.prevPageId(createPageServiceDto.getPrevPageId())
 			.build();
 	}
 
